@@ -99,7 +99,7 @@ AbstractButton {
 
         Behavior on opacity {
             PropertyAnimation {
-                duration: STheme.stdAnimationDuration
+                duration: SConstants.sDefaultAnimationDuration
             }
         }
     }

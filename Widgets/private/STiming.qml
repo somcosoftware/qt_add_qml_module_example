@@ -2,8 +2,6 @@
 //     This file contains proprietary code. Copyright (c) 2021. All rights reserved.
 // </copyright>
 import QtQuick 2.12
-import QtQuick.Layouts 1.15
-import QtQuick.Controls 2.15
 
 import Utilities
 
@@ -40,61 +38,61 @@ import Utilities
    \endcode
  */
 Item {
-  id: root
-  property int durationNominal: 1000
-  property int durationCurrent: 0
-  property alias textCustomization: txt
+    id: root
+    property int durationNominal: 1000
+    property int durationCurrent: 0
+    property alias textCustomization: txt
 
-  QtObject {
-    id: _
-    property string durationHrs: hours(root.durationNominal / 1000)
-    property string durationMin: minutes(root.durationNominal / 1000)
-    property string durationSec: seconds(root.durationNominal / 1000)
+    QtObject {
+        id: _
+        property string durationHrs: hours(root.durationNominal / 1000)
+        property string durationMin: minutes(root.durationNominal / 1000)
+        property string durationSec: seconds(root.durationNominal / 1000)
 
-    function hours(length) {
-      return Math.floor(length / 3600)
+        function hours(length) {
+            return Math.floor(length / 3600)
+        }
+
+        function minutes(length) {
+            var min = Math.floor(length / 60) % 60
+            return (min < 10) ? "0" + min : min
+        }
+
+        function seconds(length) {
+            var sec = Math.floor(length % 60)
+            return (sec < 10) ? "0" + sec : sec
+        }
+
+        function setTiming(drtn) {
+            var inSec = drtn / 1000
+            if (root.durationNominal === 0) {
+                return qsTr("00:00 / 00:00")
+            }
+            if (durationHrs === "0") {
+                return qsTr(minutes(inSec) + ":" + seconds(
+                                inSec) + " / " + _.durationMin + ":" + _.durationSec)
+            }
+            if (_.durationHrs !== "0") {
+                return qsTr(hours(inSec) + ":" + minutes(
+                                inSec) + ":" + seconds(inSec) + " / " + _.durationHrs
+                            + ":" + _.durationMin + ":" + _.durationSec)
+            }
+        }
     }
 
-    function minutes(length) {
-      var min = Math.floor(length / 60) % 60
-      return (min < 10) ? "0" + min : min
+    Text {
+        id: txt
+        anchors.fill: parent
+        text: _.setTiming(root.durationCurrent)
+        wrapMode: Text.NoWrap
+        horizontalAlignment: Text.AlignRight
+        verticalAlignment: Text.AlignVCenter
+        fontSizeMode: Text.Fit
+        color: STheme.sWhite
+        minimumPointSize: SConstants.sStandardTextPointSize
     }
 
-    function seconds(length) {
-      var sec = Math.floor(length % 60)
-      return (sec < 10) ? "0" + sec : sec
+    Component.onCompleted: function () {
+        root.durationCurrent = 0
     }
-
-    function setTiming(drtn) {
-      var inSec = drtn / 1000
-      if (root.durationNominal === 0) {
-        return qsTr("00:00 / 00:00")
-      }
-      if (durationHrs === "0") {
-        return qsTr(minutes(inSec) + ":" + seconds(
-                      inSec) + " / " + _.durationMin + ":" + _.durationSec)
-      }
-      if (_.durationHrs !== "0") {
-        return qsTr(hours(inSec) + ":" + minutes(
-                      inSec) + ":" + seconds(inSec) + " / " + _.durationHrs
-                    + ":" + _.durationMin + ":" + _.durationSec)
-      }
-    }
-  }
-
-  Text {
-    id: txt
-    anchors.fill: parent
-    text: _.setTiming(root.durationCurrent)
-    wrapMode: Text.NoWrap
-    horizontalAlignment: Text.AlignRight
-    verticalAlignment: Text.AlignVCenter
-    fontSizeMode: Text.Fit
-    color: STheme.sWhite
-    minimumPointSize: SConstants.sStandardTextPointSize
-  }
-
-  Component.onCompleted: function () {
-    root.durationCurrent = 0
-  }
 }
