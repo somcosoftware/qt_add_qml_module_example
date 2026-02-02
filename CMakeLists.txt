@@ -5,7 +5,7 @@ project(superapp VERSION 0.1 LANGUAGES CXX)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(Qt6 6.2 COMPONENTS Gui Quick Multimedia REQUIRED)
+find_package(Qt6 COMPONENTS Gui Quick Multimedia REQUIRED)
 
 qt_add_executable(appsuperapp
     main.cpp
