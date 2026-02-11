@@ -35,17 +35,16 @@ import QtQuick
    \endcode
  */
 QtObject {
-
-  readonly property color sBackgroundBlack: "#070d0c"
-  readonly property color sBackgroundGreen: "#1a3330"
-  readonly property color sBackgroundGray: "#4a4a4a"
-  readonly property color sWhite: "#ffffff"
-  readonly property color sBlack: "#000000"
-  readonly property color sGreen: "#218165"
-  readonly property color sTransparent: "transparent"
-  readonly property color sRed: "#ff0000"
-  readonly property color sPressedGreen: "#114f3c"
-  readonly property color sMagenta: "#ff00ff"
-  readonly property color sBlue: "#0000ff"
-  readonly property color sLightGreen: "#32cd32"
+    readonly property color sBackgroundBlack: "#070d0c"
+    readonly property color sBackgroundGreen: "#1a3330"
+    readonly property color sBackgroundGray: "#4a4a4a"
+    readonly property color sWhite: "#ffffff"
+    readonly property color sBlack: "#000000"
+    readonly property color sGreen: "#218165"
+    readonly property color sTransparent: "transparent"
+    readonly property color sRed: "#ff0000"
+    readonly property color sPressedGreen: "#114f3c"
+    readonly property color sMagenta: "#ff00ff"
+    readonly property color sBlue: "#0000ff"
+    readonly property color sLightGreen: "#32cd32"
 }

@@ -105,7 +105,7 @@ Slider {
         color: STheme.sWhite
     }
 
-    onMoved: function (value) {
+    onMoved: function () {
         value = valueAt(position)
         root.valueChanged(value)
     }
